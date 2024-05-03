@@ -1,0 +1,49 @@
+
+<div class="flex justify-center items-center h-screen">
+  <div class="container mx-auto">
+    <div class="bg-white p-8 rounded-lg shadow-lg w-500 p-4">
+<div class="container">
+ 
+  <form action="/submit" method="post">
+    <input type="text" id="nom" name="nom" [(ngModel)]="workflow.name" required placeholder="Tapez le nom de workflow">
+    <label for="description">Informations :</label>
+    <input type="text" id="text" name="description" [(ngModel)]="workflow.description" required placeholder="Description">
+  
+    <!-- <label for="responsable">Responsable :</label><br>
+    <select id="responsable" name="responsable" [(ngModel)]="workflow.responsible">
+      <option value="Administrateur">Administrateur</option>
+      <option value="Responsable workflow">Responsable workflow</option>
+      <option value="Utilisateur">Utilisateur</option>
+    </select> -->
+
+    <div class="form-group">
+      <label for="roles">Rôles :</label>
+
+      <div class="roles-container" >
+          <div class="role-checkbox" *ngFor="let role of roles">
+              <ng-container *ngIf="!role.status">
+
+            <input type="checkbox" id="{{role.id}}" name="roles" (change)="handleRoleChange($event, role)">
+            <label for="{{role.id}}">{{role.name}}</label>
+          </ng-container>
+
+          </div>
+      </div>
+
+  </div>
+    
+  </form>
+  </div> 
+  <div> 
+     
+    <button class="align" ><a (click)="ajoutWorkflow2()" >Continuer</a></button>
+  </div>
+  </div>
+  </div>
+  </div>
+  
+  
+    
+    
+    
+    

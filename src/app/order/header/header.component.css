@@ -1,0 +1,43 @@
+.nav {
+    background-color:rgb(43, 45, 155) ;
+    display: flex;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    height: 70px;
+  }
+
+.right-icon {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.icon-profile {
+  height: 30px;
+  border-radius: 40px;
+  margin-left: 20px;
+}
+
+.navbar-container {
+  width: 100%;
+  padding: 0px 15px;
+  height: 50px; /* Réduit la hauteur de la navbar */
+  margin-left: auto; /* Déplace la navbar vers la droite */
+}
+
+
+.icon-mode {
+  width: 40px;
+  height: 20px;
+}
+
+.nav-position {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.bi-bell{
+  width: 20px;
+  color: white;
+}

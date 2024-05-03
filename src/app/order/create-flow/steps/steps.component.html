@@ -1,0 +1,138 @@
+<div class="workflow-g">
+  <div class="workflow-steps">
+    <div cdkDropList 
+         #stepsList="cdkDropList" 
+         [cdkDropListData]="stepst" 
+         [cdkDropListConnectedTo]="[createList, iterList]"
+
+        cdkDragDisabled>
+      <div *ngFor="let step of stepst" cdkDrag [cdkDragData]="step">{{step}}</div>
+    </div>
+  </div>
+
+  <div class="workflow-create">
+    <div cdkDropList 
+        #createList="cdkDropList" 
+        [cdkDropListData]="create"
+        [cdkDropListConnectedTo]="[stepsList]"
+        (cdkDropListDropped)="drop($event)">
+
+        <div cdkDropList 
+        #iterList="cdkDropList" 
+        [cdkDropListData]="iter"
+        [cdkDropListConnectedTo]="[stepsList]"
+        (cdkDropListDropped)="drop($event)">
+
+      <div class="start-item">Start</div>
+      <div style="height: 10px"><app-branch branch_Type="step"></app-branch></div>
+      
+
+      <div class="items-container">
+
+        <div *ngFor="let item of create" cdkDrag [cdkDragData]="item">
+          <div  class="other-item" (click)="item.id ? ShowStepInfoClick(item.id) : ShowStepInfo()">
+            {{ item.name }}
+        </div> 
+             
+          
+          <!-- <div *ngIf="item === 'Conditionelle'">
+            <div>
+              <app-branch branch_Type="Conditionelle"></app-branch>
+              <div style=" display: flex; justify-content: space-between;">
+                <div style="transform: translate(9.1px, -9px);">Yes</div>
+                <div style="transform: translate(-14.9px, -9px);">No</div>
+              </div>
+            </div>
+            <div class="g_drag_zone">
+              <div class="drag_Zone" ></div>
+              <div class="drag_Zone" ></div>
+            </div>
+          </div> -->
+
+
+          
+          <!-- <div *ngIf="item === 'Itération'" style="display: flex; flex-direction: column; align-items: center;">
+            <div>
+              <app-branch branch_Type="Itération"></app-branch>
+            </div>
+            <div class="drag_Zone" cdkDropList [cdkDropListData]="iter" [cdkDropListConnectedTo]="[createList, stepsList]" (cdkDropListDropped)="drop($event)" style="margin-top: 25px; border: 1px solid #ccc; min-height: 100px;">
+              <div *ngFor="let item of item.child" cdkDrag [cdkDragData]="item" class="cdkDrag">
+                <div class="other-item" (click)="ShowStepInfoClick()">
+                  {{ item }}*
+                </div>
+              </div>
+            </div>
+          </div> -->
+          
+          
+            <div *ngIf="testStep(item)" style="display: flex; flex-direction: column; align-items: center; height: 10px;">
+              <div >
+                <app-branch branch_Type="step"></app-branch>
+              </div>
+            </div>
+          
+
+        </div>
+        <div class="exit-item">Exit</div>
+      </div>
+    </div>
+  </div>
+  <div class="grid-box3" *ngIf="showStepInfo" >
+
+  <div class="info"  >
+      <label for="description">Informations de la tâche</label><br>
+
+      
+
+      <div style="display: flex; ">
+        
+          <div>
+              <input style="margin: 20px;" type="text" id="name" name="name" [(ngModel)]="StepDto.name" required value={{name}}>
+          </div>
+
+          <div>
+              <input style="margin: 20px;"  type="text" id="description" name="description" [(ngModel)]="StepDto.description" required value={{description}}>
+          </div>
+          <button class="addStep" (click)="addStepsToWorkflow()">+</button>
+          <!-- <button class="editStep" (click)="editStep()">Modifier</button> -->
+           <button class="deleteStep" (click)="deleteStep()"><svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 30 30" width="30px" height="30px">    <path d="M 14.984375 2.4863281 A 1.0001 1.0001 0 0 0 14 3.5 L 14 4 L 8.5 4 A 1.0001 1.0001 0 0 0 7.4863281 5 L 6 5 A 1.0001 1.0001 0 1 0 6 7 L 24 7 A 1.0001 1.0001 0 1 0 24 5 L 22.513672 5 A 1.0001 1.0001 0 0 0 21.5 4 L 16 4 L 16 3.5 A 1.0001 1.0001 0 0 0 14.984375 2.4863281 z M 6 9 L 7.7929688 24.234375 C 7.9109687 25.241375 8.7633438 26 9.7773438 26 L 20.222656 26 C 21.236656 26 22.088031 25.241375 22.207031 24.234375 L 24 9 L 6 9 z"/></svg>
+          </button>
+
+      </div>
+      <!-- <div style="display: flex;">
+          <div>
+              <input style="margin: 20px; margin-top: 2px;"  type="text" id="responsable" name="responsable" required placeholder="responsable">
+          </div>
+          <div>
+              <input style="margin: 20px; margin-top: 2px;"  type="text" id="url" name="url" required placeholder="URL du résultat">
+          </div>
+      </div> -->
+      
+  </div>
+  <div >
+    <table>
+      <thead>
+        <tr>
+          <th>Nom du régle</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let rule of RuleDto">
+          <td>{{ rule.ruleName }}</td>
+          <td>{{ rule.description }}</td>
+  
+          <td>
+            
+            <button class="edit-button"(click)="editWorkflow(rule.ruleId)" >Modifier</button>
+            <button class="delete-button" (click)="deleteWorkflow(rule.ruleId)">Supprimer</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+        
+  </div>
+  <button class="buttonAddRule" (click)="createRule()"><a >Ajouter une régle</a></button> 
+  
+</div> 
