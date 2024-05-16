@@ -10,11 +10,32 @@ import { StepInfoComponent } from './create-flow/step-info/step-info.component';
 import { StepsComponent } from './create-flow/steps/steps.component';
 import { ListworkflowComponent } from './listworkflow/listworkflow.component';
 import { EditComponent } from './edit/edit.component';
-
+import { ExecutorComponent } from './executor/executor.component';
+import { WorkflowListComponent } from './executor/workflow-list/workflow-list.component';
+import { WorkflowExecuteComponent } from './executor/workflow-execute/workflow-execute.component';
+import { DescriptionComponent } from './executor/description/description.component';
 const orderRoutes: Routes = [
 
 
-  { path: '', redirectTo:'orderComponent/dashbordComponent', pathMatch: 'full' },
+  { path: '', redirectTo:'/mfe1/executor/workflowList', pathMatch: 'full' },
+
+  {
+    path: 'executor',
+    component: ExecutorComponent,
+    children:[{
+      path:'workflowList',
+      component: WorkflowListComponent
+    },
+    {
+      path: 'workflowExecute/:workflowId',
+      component: WorkflowExecuteComponent
+    },
+    {path : 'description',
+      component :DescriptionComponent
+    }
+
+    ]
+  },
 
     {
         path: 'orderComponent',

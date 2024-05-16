@@ -11,6 +11,8 @@ import { Observable } from 'rxjs';
 import { Step } from '../common/models/step';
 import { Role } from '../common/models/role';
 import { User } from '../common/models/user';
+import { WorkflowExecution } from './executor/models/workflowExecutes';
+import { Objet, RuleObjet } from './executor/models/ruleObjet';
 
 @Injectable({
   providedIn: 'root'
@@ -171,5 +173,45 @@ editUser(user:User){
  getRoleById(userId:any){
   return this.http.get(this.url+'/'+userId)
 }
+
+
+
+/** ghazi api for executor */
+//APIRole
+ // API pour récupérer tous les workflows par rôle
+ getAllworkflowByRole(role: number) {
+  return this.http.get(this.urlEx + '/workflow/role/' + role, );
+}
+
+// API pour récupérer toutes les étapes par ID de workflow
+getAllStepByIdWorkflow(workflowId: any) {
+  return this.http.get(this.urlEx + '/workflow/workflowExs/workflow/stpes/' + workflowId);
+}
+
+// API pour éditer une étape
+editStep(stepEx: WorkflowExecution, id :number) {
+  return this.http.put(this.urlEx + '/workflow/workflowExs/'+id,stepEx);
+}
+
+// API pour obtenir le résultat d'une règle
+getResultRule(ruleId: any) {
+  return this.http.get(this.urlExRule + '/rules/relation2eme/'+ruleId);
+}
+//api pour obtenir les objets du regle
+getAllObjetByRuleId(ruleId: number) {
+return this.http.get(this.urlExRule + '/rules/ObjectsByIdRule/' + ruleId);
+}
+  // API pour éditer une Objet
+  editObjet(obj: Objet, id :number) {
+    return this.http.put(this.urlExRule + '/objets/'+id,obj);
+  }
+
+
+
+// Votre URL de base pour les API
+private urlEx = 'http://localhost:7080/api';
+private urlExRule = 'http://localhost:7081/api/rule';
+
+
 }
 
