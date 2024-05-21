@@ -32,7 +32,7 @@ export class StepsComponent  implements OnInit{
     name: '',
     description: '',
     creationDate: new Date(),
-    responsible: '',
+    role: [],
     steps: []
   };
   idStep: number | null;

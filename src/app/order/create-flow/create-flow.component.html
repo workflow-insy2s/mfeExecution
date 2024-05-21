@@ -1,29 +1,145 @@
-<div class="globalContainer">
+<!--  <div class="globalContainer">
   <app-steps></app-steps>  
+</div>  -->
+<div class="container">
+  <div class="sidebar">
+    <ul>
+      <li (click)="showContent('Step')">Step</li>
+      <li (click)="showContent('Iteration')">Iteration</li>
+      <li (click)="showContent('Conditionnelle')">Conditionnelle</li>
+    </ul>
+  </div>
+  <div class="content">
+    <ng-container *ngIf="selectedContent === 'Step'">
+      <!---------------------Blog Ajouter Step-------------------------->
+      <div class="add-user-form">
+        <h2>Ajouter un nouvel Step</h2>
+        <form>
+            <div class="form-group">
+                <label for="username">Nom d'etape :</label>
+                <input type="text" id="username" name="username"  required>
+            </div>
+            <div class="form-group">
+                <label for="email">Description d'etape :</label>
+                <input type="text" id="email" name="email"   required>
+            </div>
+    
+            
+            <div class="button-group">
+                <button type="button" class="add-button" >Ajouter</button>
+                <button type="button" class="cancel-button">Annuler</button>
+            </div>
+        </form>
+    </div>
+      <!---------------------------------------------------------------->
+    </ng-container>
+    <ng-container *ngIf="selectedContent === 'Iteration'">
+      <!---------------------Blog Ajouter Step Iteration---------------->
+      <div class="add-user-form">
+        <h2>Ajouter un nouvel etape de type Iteration</h2>
+        <form>
+            <div class="form-group">
+                <label for="username">Nom d'etape :</label>
+                <input type="text" id="username" name="username"  required>
+            </div>
+            <div class="form-group">
+                <label for="email">Description d'etape :</label>
+                <input type="text" id="email" name="email"   required>
+            </div>
+    
+            
+            <div class="button-group">
+                <button type="button" class="add-button" >Ajouter</button>
+                <button type="button" class="cancel-button">Annuler</button>
+            </div>
+        </form>
+    </div>
+      <!---------------------------------------------------------------->
+    </ng-container>
+    <ng-container *ngIf="selectedContent === 'Conditionnelle'">
+      <!---------------------Blog Ajouter Step Iteration---------------->
+      <div class="add-user-form">
+        <h2>Ajouter un nouvel etape de type Conditionnelle</h2>
+        <form>
+            <div class="form-group">
+                <label for="username">Nom d'etape :</label>
+                <input type="text" id="username" name="username"  required>
+            </div>
+            <div class="form-group">
+                <label for="email">Description d'etape :</label>
+                <input type="text" id="email" name="email"   required>
+            </div>
+    
+            
+            <div class="button-group">
+                <button type="button" class="add-button" >Ajouter</button>
+                <button type="button" class="cancel-button">Annuler</button>
+            </div>
+        </form>
+    </div>
+      <!---------------------------------------------------------------->
+    </ng-container>
+  </div>
 </div>
 
-
-<!-- 
-<div class="flex justify-center items-center h-screen">
-  <div class="container mx-auto">
-    <div class="bg-white p-8 rounded-lg shadow-lg w-500 p-4">
-     <div class="add"> -->
-          <!-- <div class="container">
-            <div class="steps-container">
-              <app-steps></app-steps>
-            </div>
-            <div class="workflow-container">
-              <app-create-workflow></app-create-workflow>
-            </div>
-            
-           </div> -->
+<!---------------------------------------Workflow graphique presentation------------------------------------------------------->
+<!---blog a gauche et blog a droit-->
+<!--blog a gauche-->
+<div class="conteneur">
+  <div class="cadre gauche">
+<!------>
+    <div class="blog">
+      <div class="blog-header">
+        <h2>Présentation graphique de workflow</h2>
+      </div>
+      <!-- Sous Blog pour les steps -->
+      <div class="blog-body">
+        <!-- Première paire de sous-blogs et flèche -->
+        <div class="sub-blog-container">
+          <div class="sub-blog">
+            <h4>Step 1</h4>
+            <p>Description de la règle</p>
+            <button class="btn-add" (click)="ShowRegle()">Aj.Règle</button>
+            <button class="btn-delete">Sup</button>
+          </div>
+          <span class="arrow"></span>
+        </div>
+        <!-- Deuxième paire de sous-blogs et flèche -->
+        <div class="sub-blog-container">
+          <div class="sub-blog">
+            <h4>Step 2</h4>
+            <p>Description de la règle</p>
+            <button class="btn-add" (click)="ShowRegle()">Aj.Règle</button>
+            <button class="btn-delete">Sup</button>
+          </div>
+          <span class="arrow"></span>
+        </div>
+        <!-- Ajoute d'autres paires de sous-blogs et flèches au besoin -->
+        <div class="sub-blog-container">
+          <div class="sub-blog">
+            <h4>Step 3</h4>
+            <p>Description de la règle</p>
+            <button class="btn-add" (click)="ShowRegle()" >Aj.Règle</button>
+            <button class="btn-delete">Sup</button>
+          </div>
           
-           
-<!-- 
         </div>
-        </div>
-        </div>
-        </div> -->
+      </div>
+      
+      
+    </div>
+  </div>
+  <!--blog a droit-->
+  <div class="cadre droit" *ngIf="showViewRegle">
+    <router-outlet></router-outlet>
+  </div>
+  <!--------------->
+</div>
+
+<!----------------------------------------------------------------------------------------------------------------------------->
+
+
+
      
 
   

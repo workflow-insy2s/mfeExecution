@@ -14,10 +14,16 @@ import { ExecutorComponent } from './executor/executor.component';
 import { WorkflowListComponent } from './executor/workflow-list/workflow-list.component';
 import { WorkflowExecuteComponent } from './executor/workflow-execute/workflow-execute.component';
 import { DescriptionComponent } from './executor/description/description.component';
+import { loadRemoteModule } from '@angular-architects/module-federation';
+
 const orderRoutes: Routes = [
 
 
-  { path: '', redirectTo:'/mfe1/executor/workflowList', pathMatch: 'full' },
+  { path: '', redirectTo:'/mfe1/orderComponent/dashbordComponent', pathMatch: 'full' },
+  //{ path: '', redirectTo:'/mfe1/executor/workflowList', pathMatch: 'full' },
+
+
+
 
   {
     path: 'executor',
@@ -67,7 +73,17 @@ const orderRoutes: Routes = [
                 path: 'stepsComponent',
                 component: StepsComponent
             
-              }
+              },
+              {
+                path:'MfeRule',
+                loadChildren:()=>{
+                    return loadRemoteModule({
+                        type:'module',
+                        remoteEntry:"http://localhost:4002/remoteEntry.js",
+                        exposedModule:"./RuleModule"
+                    }).then(m=>m.RuleModule).catch(e=>console.log(e));
+                }
+            }
             ]
             
           },

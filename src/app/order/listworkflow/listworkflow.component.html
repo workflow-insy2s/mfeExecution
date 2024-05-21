@@ -18,7 +18,7 @@
             <tr *ngFor="let workflow of WorkflowDto | slice: (pageIndex - 1) * pageSize : pageIndex * pageSize">
               <td>{{ workflow.name }}</td>
               <td>{{ workflow.description }}</td>
-              <td>{{ workflow.responsible }}</td>
+              <td>{{ workflow.role }}</td>
               <td>
                 <!-- <button class="view-button">Gérer proce</button> -->
                 <button class="edit-button" (click)="nav(workflow.id)">Modifier</button>

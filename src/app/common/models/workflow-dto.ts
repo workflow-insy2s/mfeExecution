@@ -6,7 +6,7 @@ export class WorkflowDto {
       name: string = '';
       description: string = '';
       creationDate: Date = new Date();
-      responsible: string = '';
+      role: any[] ;
       steps: Step[];   
  }
 

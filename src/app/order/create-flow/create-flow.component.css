@@ -1,30 +1,228 @@
-.globalContainer{
-  width: 100%;
-  height: 100%;
+.container {
+  display: flex;
+  margin-left: 0px ;
+}
+
+.sidebar {
+  width: 200px;
+  background-color: #f0f0f0;
+  padding: 10px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  cursor: pointer;
+  padding: 10px;
+  margin: 5px 0;
+  background-color: #ddd;
+}
+
+.sidebar ul li:hover {
+  background-color: #bbb;
+}
+
+.content {
+  flex: 1;
+  padding: 10px;
+}
+
+/*pour le div de ajouter Step*/
+.add-user-form {
+  margin: auto; /* Ajout de la marge en haut et en bas et centrage horizontal */
+  width: 10% auto; /* Définition de la largeur de l'interface utilisateur */
+}
+
+.add-user-form h2 {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.add-user-form form {
+  width: 100%; /* Utilisation de la largeur totale du conteneur parent */
+}
+
+.add-user-form .form-group {
+  margin-bottom: 10px;
+}
+
+.add-user-form label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.add-user-form input,
+.add-user-form select {
+  width: calc(100% - 20px); /* Utilisation de la largeur totale du conteneur parent avec une petite marge */
+  padding: 8px;
+  border: 1px solid #bab8b8;
+  border-radius: 4px;
+}
+
+.add-user-form .button-group {
+  margin-top: 20px; /* Ajout de l'espace entre les boutons et les champs de formulaire */
+}
+
+.add-user-form .button-group button {
+  width: 49%; /* Définition de la largeur des boutons */
+  padding: 10px; /* Ajout du rembourrage */
+  border: none; /* Suppression de la bordure */
+  border-radius: 4px; /* Coins arrondis */
+  cursor: pointer; /* Curseur pointeur */
+}
+
+.add-user-form .button-group button.add-button {
+  background-color: #4CAF50; /* Couleur de fond du bouton Ajouter */
+  color: white; /* Couleur du texte */
+  margin-right: 3px;
+}
+
+.add-user-form .button-group button.cancel-button {
+  background-color: #f44336; /* Couleur de fond du bouton Annuler */
+  color: white; /* Couleur du texte */
+}
+
+.add-user-form .button-group button:hover {
+  opacity: 0.8; /* Réduction de l'opacité au survol */
+}
+
+
+/*Workflow graphique presentation*/
+.blog {
+  border: 2px solid blue;
+  border-radius: 10px;
+  background-color: #f0f8ff; /* Light blue background */
+ margin:10px ;
+}
+
+.blog-header {
+  text-align: center;
+}
+
+.blog-body {
+  margin-top: 20px;
+  display: flex; /* Utilisation de flexbox */
+  flex-direction: column; /* Alignement vertical */
+  align-items: center; /* Centrage horizontal */
+}
+
+
+.sub-blog {
+  height: 200px ;
+  width: 200px ;
+  text-align: center;
+  margin: 20px;
+  /**/
+  border: 2px solid #1E90FF; /* Bleu dodger */
+  border-radius: 10px;
+  background-color: #ADD8E6; /* Bleu clair */
+}
+
+.sub-blog {
+  height: auto; /* Hauteur automatique en fonction du contenu */
+  width: auto; /* Largeur automatique en fonction du contenu */
+  min-height: 100px; /* Hauteur minimale */
+  min-width: 100px; /* Largeur minimale */
+  text-align: center;
+  margin: 20px;
+  border: 2px solid #1E90FF; /* Bleu dodger */
+  border-radius: 10px;
+  background-color: #ADD8E6; /* Bleu clair */
+  overflow: auto; /* Ajout de défilement si le contenu dépasse les dimensions minimales */
+}
+
+
+.sub-blog h4 {
+  margin-top: 5px;
+}
+
+.sub-blog p {
+  margin: 10px 0;
+}
+
+.sub-blog button {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #e3b835; /* Vert */
+  color: white;
+  transition: background-color 0.3s;
+  margin: 1px;
   
 }
 
-/* .container {
-    display: flex;
-  }
-   */
-  /* .steps-container, .workflow-container {
-    flex: 1;
-  } */
+.sub-blog button:hover {
+  background-color: #e4c25e; /* Vert foncé au survol */
+}
+
+.sub-blog .btn-delete {
+  background-color: #f44336; /* Rouge */
+}
+
+.sub-blog .btn-delete:hover {
+  background-color: #e53935; /* Rouge foncé au survol */
+}
+
+
+/* Flèches */
+/* Ajout du style pour le conteneur de sous-blog */
+.sub-blog-container {
+  position: relative;
+}
+
+/* Style de la flèche */
+.arrow {
+  position: absolute;
+  top: 50%;
+  width: 40px;
+  height: 30px;
+  background-color: #1E90FF;
+  top: calc(80% + 15px); /* Place la flèche en dessous du sous-blog */
+  left: 40%; /* Centre la flèche horizontalement */
+  transform: translateX(-50%); /* Centre la flèche horizontalement */
+
+}
+
+
+
+.arrow:first-child {
+  left: -25px;
+  clip-path: polygon(0% 50%, 100% 0%, 100% 100%);
+  transform: rotate(90deg); /* Rotation de 90 degrés */
+}
+
+.arrow:last-child {
+  right: -25px;
+  clip-path: polygon(0% 0%, 100% 50%, 0% 100%);
+  transform: rotate(90deg); /* Rotation de 90 degrés */
+}
+/*pour le blog a gauche et le blog a droit*/
+.conteneur {
+  display: flex;
+  border: 1px solid #ccc;
+margin-top: 20px;
+}
+
+.cadre {
+  flex: 1;
+  border: 2px solid #ccc;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 15px; /* Ajoute des coins arrondis de 15px */
+
+}
+
+.gauche {
+  margin-right: 10px; /* Marge entre les cadres */
+}
+
+.droit {
+  margin-left: 10px; /* Marge entre les cadres */
   
-  /* .steps-container {
-    margin-right: 10px;
-    border-radius: 15px;
-  
-  } */
-  
-  /* .workflow-container{
-    background-color: white;
-    border-radius: 15px;
-    
-  } */
-/* 
-  .add{
-    background-color: aliceblue;
-  } */
-  
+}
+

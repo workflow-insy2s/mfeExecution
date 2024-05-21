@@ -26,6 +26,13 @@ export class AddworkflowComponent implements OnInit{
   ngOnInit(): void {
     this.token = this.tokenService.getToken();
     console.log('réception de Token dans MFE_Rule ',this.tokenService.getToken())
+    //get all Role
+    this.srv.getAllRoles().subscribe((res: any) => {
+  
+      console.log(res)
+      this.roles = res
+    
+     })
     }
 
   //methode AddWorkflow
@@ -39,6 +46,7 @@ export class AddworkflowComponent implements OnInit{
   //2eme
   ajoutWorkflow2() {
     // console.log(this.workflow);
+    this.workflow.role = this.selectedRoles
     this.srv.addWorkflow(this.workflow)
       .subscribe(
         (result) => { // success
@@ -57,12 +65,12 @@ export class AddworkflowComponent implements OnInit{
   }
 
   // Méthode pour gérer le changement d'état des cases à cocher
-  selectedRoles: Role[] = [];
+  selectedRoles: any[] = [];
   handleRoleChange(event: any, role: Role) {
     role.checked = event.target.checked;
     if (event.target.checked) {
       // Si la case est cochée, ajoutez le rôle au tableau
-      this.selectedRoles.push(role);
+      this.selectedRoles.push(role.id);
     } else {
       // Si la case est décochée, retirez le rôle du tableau
       const index = this.selectedRoles.findIndex(selectedRole => selectedRole === role);

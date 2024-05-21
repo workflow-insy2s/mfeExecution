@@ -136,7 +136,7 @@ addRole (role:Role){
  }
 
  getAllRoles(){
-  return this.http.get(this.url+'/roles/')
+  return this.http.get(this.url2+'/roles/')
 
  }
 
